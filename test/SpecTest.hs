@@ -6,6 +6,7 @@ module Main where
 import Test.Hspec
 
 import Basic
+import System.IO
 
 main :: IO ()
 main = hspec day1Spec
@@ -17,10 +18,16 @@ simpleMathSpec = describe "Tests of our simple math function" $ do
     it "Should match the our expected value" $
       simpleMathFunction 3 4 5 `shouldBe` 7
 
-readInputFile = [191]
+readInputFile = do
+  helloFile <- readFile "test/input_day1"
+  return helloFile
+  -- content <- (readFile "input_day1")
+  
+
 
 day1Spec :: Spec
 day1Spec = describe "foo" $ do
   context "blah" $
-    it "should do something" $
-      head readInputFile `shouldBe` 191
+    it "should do something" $ do
+      foo <- readInputFile 
+      head (lines foo) `shouldBe` "191"
