@@ -19,8 +19,9 @@ simpleMathSpec = describe "Tests of our simple math function" $ do
       simpleMathFunction 3 4 5 `shouldBe` 7
 
 readInputFile = do
-  helloFile <- readFile "test/input_day1"
-  return helloFile
+  rawcontent <- readFile "test/input_day1"
+  content <- lines rawcontent
+  return content
   -- content <- (readFile "input_day1")
   
 
@@ -30,4 +31,4 @@ day1Spec = describe "foo" $ do
   context "blah" $
     it "should do something" $ do
       foo <- readInputFile 
-      head (lines foo) `shouldBe` "191"
+      head foo `shouldBe` "191"
