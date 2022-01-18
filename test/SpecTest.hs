@@ -24,10 +24,13 @@ count (x:rest) = (count [x, (head rest)]) + (count rest)
   
 day1Spec :: Spec
 day1Spec = describe "day1" $ do
-  context "read input file" $
+  context "read input file" $ do
     it "should return the first line" $ do
       lines <- readInputFile 
-      head lines `shouldBe` "191" 
+      head lines `shouldBe` "191"
+    it "converts" $ do
+      lines <- readInputFile
+      read (head lines) `shouldBe` 191
   context "count increases for two values" $
     it "returns 1 increasing" $ do
       count([199, 200]) `shouldBe` 1
@@ -38,8 +41,5 @@ day1Spec = describe "day1" $ do
   context "count increase for example" $
     it "counts" $
       count([199,200,208,210,200,207,240,269,260,263]) `shouldBe` 7
-  context "count increases for puzzle" $
-    it "counts" $ do
-      lines <- readInputFile
-      read (head lines) `shouldBe` 191
+ -- context "count increases for puzzle" $
       
