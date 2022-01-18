@@ -11,6 +11,10 @@ import System.IO
 main :: IO ()
 main = hspec day1Spec
 
+parseInputFile = do
+  raw_lines <- readInputFile
+  return (map read raw_lines)
+
 readInputFile = do
   rawcontent <- readFile "test/input_day1"
   return (lines rawcontent)
@@ -32,8 +36,7 @@ day1Spec = describe "day1" $ do
       lines <- readInputFile
       read (head lines) `shouldBe` 191
     it "maps all lines to integer" $ do
-      raw_lines <- readInputFile
-      let lines = map read raw_lines
+      lines <- parseInputFile
       head lines `shouldBe` 191
   context "count increases for two values" $
     it "returns 1 increasing" $ do
