@@ -23,11 +23,9 @@ readInputFile = do
   return (lines rawcontent)
   -- content <- (readFile "input_day1")
   
-
-
 day1Spec :: Spec
-day1Spec = describe "foo" $ do
-  context "blah" $
-    it "should do something" $ do
+day1Spec = describe "day1" $ do
+  context "read input file" $
+    it "should return the first line" $ do
       lines <- readInputFile 
       head lines `shouldBe` "191"
