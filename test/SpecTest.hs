@@ -15,7 +15,10 @@ readInputFile = do
   rawcontent <- readFile "test/input_day1"
   return (lines rawcontent)
 
-count measurements = 1
+count (x:xs) = 
+  if x < head xs
+    then 1
+    else 0
   
 day1Spec :: Spec
 day1Spec = describe "day1" $ do
@@ -26,3 +29,4 @@ day1Spec = describe "day1" $ do
   context "count increases" $
     it "something" $ do
       count([199, 200]) `shouldBe` 1
+      count([199, 198]) `shouldBe` 0
