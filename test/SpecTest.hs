@@ -31,6 +31,10 @@ day1Spec = describe "day1" $ do
     it "converts" $ do
       lines <- readInputFile
       read (head lines) `shouldBe` 191
+    it "maps all lines to integer" $ do
+      raw_lines <- readInputFile
+      let lines = map read raw_lines
+      head lines `shouldBe` 191
   context "count increases for two values" $
     it "returns 1 increasing" $ do
       count([199, 200]) `shouldBe` 1
