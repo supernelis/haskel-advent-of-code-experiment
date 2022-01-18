@@ -26,7 +26,7 @@ day1Spec = describe "day1" $ do
     it "should return the first line" $ do
       lines <- readInputFile 
       head lines `shouldBe` "191" 
-  context "count increases" $
-    it "something" $ do
+  context "count increases for two values" $
+    it "returns 1 increasing" $ do
       count([199, 200]) `shouldBe` 1
       count([199, 198]) `shouldBe` 0
