@@ -15,10 +15,12 @@ readInputFile = do
   rawcontent <- readFile "test/input_day1"
   return (lines rawcontent)
 
-count (x:xs:nil) = 
+count (x:xs:[]) = 
   if x < xs
     then 1
     else 0
+
+count (x:rest) = (count [x, (head rest)]) + (count rest)
   
 day1Spec :: Spec
 day1Spec = describe "day1" $ do
@@ -30,3 +32,6 @@ day1Spec = describe "day1" $ do
     it "returns 1 increasing" $ do
       count([199, 200]) `shouldBe` 1
       count([199, 198]) `shouldBe` 0
+  context "count increases for three values" $
+    it "ddd" $ do
+      count([1, 2, 3]) `shouldBe` 2
