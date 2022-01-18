@@ -48,5 +48,8 @@ day1Spec = describe "day1" $ do
   context "count increase for example" $
     it "counts" $
       count([199,200,208,210,200,207,240,269,260,263]) `shouldBe` 7
- -- context "count increases for puzzle" $
+  context "count increases for puzzle" $
+    it "counts" $ do
+      lines <- parseInputFile
+      count lines `shouldBe` 1709
       
