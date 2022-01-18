@@ -35,3 +35,6 @@ day1Spec = describe "day1" $ do
   context "count increases for three values" $
     it "ddd" $ do
       count([1, 2, 3]) `shouldBe` 2
+  context "count increase for example" $
+    it "counts" $
+      count([199,200,208,210,200,207,240,269,260,263]) `shouldBe` 7
