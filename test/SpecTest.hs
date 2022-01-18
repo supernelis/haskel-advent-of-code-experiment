@@ -15,8 +15,8 @@ readInputFile = do
   rawcontent <- readFile "test/input_day1"
   return (lines rawcontent)
 
-count (x:xs) = 
-  if x < head xs
+count (x:xs:nil) = 
+  if x < xs
     then 1
     else 0
   
