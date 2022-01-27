@@ -11,11 +11,14 @@ import System.IO
 main :: IO ()
 main = hspec day2Spec
 
-forward n = n
+data HPosition = Position Int
+  deriving (Show, Eq)
+
+forward (Position origin) steps = Position (origin + steps)
 
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
   context "" $
     it "should move the submarine forward" $
-      forward 5 `shouldBe` 5
+      forward (Position 0) 5 `shouldBe` Position 5
   
