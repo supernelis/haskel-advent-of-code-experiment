@@ -25,7 +25,9 @@ count (x:xs:[]) =
     else 0
 
 count (x:rest) = (count [x, (head rest)]) + (count rest)
-  
+
+something (x:y:z:[]) = x + y + z  
+
 day1Spec :: Spec
 day1Spec = describe "day1" $ do
   context "read input file" $ do
@@ -52,4 +54,7 @@ day1Spec = describe "day1" $ do
     it "counts" $ do
       lines <- parseInputFile
       count lines `shouldBe` 1709
+  context "something" $ do
+    it "should sum the elements in the sliding window" $
+      something([199,200,208]) `shouldBe` 607
       
