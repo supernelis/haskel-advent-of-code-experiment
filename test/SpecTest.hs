@@ -26,7 +26,7 @@ count (x:xs:[]) =
 
 count (x:rest) = (count [x, (head rest)]) + (count rest)
 
-something (x:y:z:[]) = x + y + z  
+something (x:y:z:[]) = [x + y + z] 
 
 day1Spec :: Spec
 day1Spec = describe "day1" $ do
@@ -56,5 +56,6 @@ day1Spec = describe "day1" $ do
       count lines `shouldBe` 1709
   context "something" $ do
     it "should sum the elements in the sliding window" $
-      something([199,200,208]) `shouldBe` 607
-      
+      something([199,200,208]) `shouldBe` [607]
+--    it "should calculate the sum of two sliding windows" $
+--      blabla([199,200,208,])
