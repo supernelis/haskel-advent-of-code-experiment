@@ -30,6 +30,8 @@ sumOfWindows (x:y:z:[]) = [x + y + z]
 
 sumOfWindows (x:y:z:rest) = sumOfWindows [x,y,z] ++ sumOfWindows ([y,z] ++ rest)
 
+countIncreasesInSlidingWindow (measurements) = count (sumOfWindows measurements)
+
 day1Spec :: Spec
 day1Spec = describe "day1" $ do
   context "read input file" $ do
@@ -63,4 +65,7 @@ day1Spec = describe "day1" $ do
       sumOfWindows([199,200,208,210]) `shouldBe` [607, 618]
     it "should calculate the sum of three sliding windows" $
       sumOfWindows([199,200,208,210,300]) `shouldBe` [607,618,718]
+  context "countIncreasesInSlidingWindow" $ do
+    it "counts" $
+      countIncreasesInSlidingWindow([199,200,208,210,300]) `shouldBe` 2
 
