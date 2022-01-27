@@ -23,4 +23,6 @@ day2Spec = describe "day2" $ do
       forward (Position 0) 5 `shouldBe` Position 5
     it "should move from 5 to 10" $
       forward (Position 5) 5 `shouldBe` Position 10
+    it "should move two times forward" $
+      forward (forward (Position 0) 5) 5 `shouldBe` Position 10
   
