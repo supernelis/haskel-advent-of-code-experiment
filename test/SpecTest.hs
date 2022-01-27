@@ -70,6 +70,6 @@ day1Spec = describe "day1" $ do
       countIncreasesInSlidingWindow([199,200,208,210,300]) `shouldBe` 2
     it "counts increases between sliding windows in example" $
       countIncreasesInSlidingWindow([199,200,208,210,200,207,240,269,260,263]) `shouldBe` 5
-    it "xyz" $ do
+    it "solve second puzzle day 1" $ do
       lines <- parseInputFile
       countIncreasesInSlidingWindow lines `shouldBe` 1761
