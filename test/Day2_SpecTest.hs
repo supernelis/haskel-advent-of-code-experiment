@@ -20,5 +20,5 @@ day2Spec :: Spec
 day2Spec = describe "day2" $ do
   context "" $
     it "should move the submarine forward" $
-      forward (Position 0) 5 `shouldBe` Position 6
+      forward (Position 0) 5 `shouldBe` Position 5
   
