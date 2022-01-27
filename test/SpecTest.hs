@@ -66,7 +66,7 @@ day1Spec = describe "day1" $ do
     it "should calculate the sum of three sliding windows" $
       sumOfWindows([199,200,208,210,300]) `shouldBe` [607,618,718]
   context "countIncreasesInSlidingWindow" $ do
-    it "counts" $
+    it "counts increases between 3 sliding windows" $
       countIncreasesInSlidingWindow([199,200,208,210,300]) `shouldBe` 2
-    it "counts" $
+    it "counts increases between sliding windows in example" $
       countIncreasesInSlidingWindow([199,200,208,210,200,207,240,269,260,263]) `shouldBe` 5
