@@ -61,3 +61,6 @@ day1Spec = describe "day1" $ do
       something([199,200,208]) `shouldBe` [607]
     it "should calculate the sum of two sliding windows" $
       something([199,200,208,210]) `shouldBe` [607, 618]
+    it "should calculate the sum of three sliding windows" $
+      something([199,200,208,210,300]) `shouldBe` [607,618,718]
+
