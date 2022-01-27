@@ -26,7 +26,9 @@ count (x:xs:[]) =
 
 count (x:rest) = (count [x, (head rest)]) + (count rest)
 
-something (x:y:z:[]) = [x + y + z] 
+something (x:y:z:[]) = [x + y + z]
+
+something (x:y:z:rest) = something [x,y,z] ++ something ([y,z] ++ rest)
 
 day1Spec :: Spec
 day1Spec = describe "day1" $ do
