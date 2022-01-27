@@ -68,4 +68,5 @@ day1Spec = describe "day1" $ do
   context "countIncreasesInSlidingWindow" $ do
     it "counts" $
       countIncreasesInSlidingWindow([199,200,208,210,300]) `shouldBe` 2
-
+    it "counts" $
+      countIncreasesInSlidingWindow([199,200,208,210,200,207,240,269,260,263]) `shouldBe` 5
