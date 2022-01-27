@@ -26,9 +26,9 @@ count (x:xs:[]) =
 
 count (x:rest) = (count [x, (head rest)]) + (count rest)
 
-something (x:y:z:[]) = [x + y + z]
+sumOfWindows (x:y:z:[]) = [x + y + z]
 
-something (x:y:z:rest) = something [x,y,z] ++ something ([y,z] ++ rest)
+sumOfWindows (x:y:z:rest) = sumOfWindows [x,y,z] ++ sumOfWindows ([y,z] ++ rest)
 
 day1Spec :: Spec
 day1Spec = describe "day1" $ do
@@ -56,11 +56,11 @@ day1Spec = describe "day1" $ do
     it "counts" $ do
       lines <- parseInputFile
       count lines `shouldBe` 1709
-  context "something" $ do
+  context "sumOfWindows" $ do
     it "should sum the elements in the sliding window" $
-      something([199,200,208]) `shouldBe` [607]
+      sumOfWindows([199,200,208]) `shouldBe` [607]
     it "should calculate the sum of two sliding windows" $
-      something([199,200,208,210]) `shouldBe` [607, 618]
+      sumOfWindows([199,200,208,210]) `shouldBe` [607, 618]
     it "should calculate the sum of three sliding windows" $
-      something([199,200,208,210,300]) `shouldBe` [607,618,718]
+      sumOfWindows([199,200,208,210,300]) `shouldBe` [607,618,718]
 
