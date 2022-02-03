@@ -37,6 +37,10 @@ readInputFile = do
   rawcontent <- readFile "test/input_day2"
   return (lines rawcontent)
 
+parseInputFile = do
+  raw_lines <- readInputFile
+  return (map parseInstruction raw_lines)
+
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
   describe "forward function" $ do
@@ -57,3 +61,7 @@ day2Spec = describe "day2" $ do
     it "should return the first line" $ do
       lines <- readInputFile 
       head lines `shouldBe` "forward 3"
+  describe "parse file" $ do
+    it "should return the instructions" $ do
+      instructions <- parseInputFile
+      head instructions `shouldBe` Instruction "forward" 3
