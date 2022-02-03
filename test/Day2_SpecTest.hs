@@ -26,12 +26,19 @@ down (Submarine (Position origin) (Depth d)) steps = Submarine (Position origin)
 
 up (Submarine (Position origin) (Depth d)) steps = Submarine (Position origin) (Depth (d-steps))
 
-data Instruction = Instruction {instruction :: String, value :: Int}
+data Command = Forward | Up | Down
   deriving (Show, Eq)
+
+data Instruction = Instruction {command :: Command, value :: Int}
+  deriving (Show, Eq)
+
+parseCommand "forward" = Forward
+parseCommand "down" = Down
+parseCommand "up" = Up
 
 parseInstruction instruction = do
   let (command:value:[]) = words instruction
-  Instruction command (read value)
+  Instruction (parseCommand command) (read value)
 
 readInputFile = do
   rawcontent <- readFile "test/input_day2"
@@ -54,9 +61,9 @@ day2Spec = describe "day2" $ do
       up (up (Submarine (Position 0) (Depth 15)) 5) 5 `shouldBe` Submarine (Position 0) (Depth 5)
   describe "parse instruction" $ do
     it "should parse a forward instruction" $
-      parseInstruction "forward 3" `shouldBe` Instruction "forward" 3
+      parseInstruction "forward 3" `shouldBe` Instruction Forward 3
     it "should parse a down instruction" $
-      parseInstruction "down 5" `shouldBe` Instruction "down" 5
+      parseInstruction "down 5" `shouldBe` Instruction Down 5
   describe "read file" $ do
     it "should return the first line" $ do
       lines <- readInputFile 
@@ -64,4 +71,4 @@ day2Spec = describe "day2" $ do
   describe "parse file" $ do
     it "should return the instructions" $ do
       instructions <- parseInputFile
-      head instructions `shouldBe` Instruction "forward" 3
+      head instructions `shouldBe` Instruction Forward 3
