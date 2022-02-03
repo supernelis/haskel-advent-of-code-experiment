@@ -89,3 +89,5 @@ day2Spec = describe "day2" $ do
       let instruction = Instruction Up 3
       let submarine = Submarine (Position 0) (Depth 3)
       execute instruction submarine `shouldBe` Submarine (Position 0) (Depth 0)
+    it "should fold" $ do
+      foldl (++) "c" ["a","b"] `shouldBe` "cab"
