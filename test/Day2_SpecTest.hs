@@ -49,6 +49,7 @@ parseInputFile = do
   return (map parseInstruction raw_lines)
 
 execute (Instruction Forward value) submarine = forward submarine value
+execute (Instruction Down value) submarine = down submarine value
 
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
@@ -75,7 +76,11 @@ day2Spec = describe "day2" $ do
       instructions <- parseInputFile
       head instructions `shouldBe` Instruction Forward 3
   describe "execute instruction" $ do
-    it "should execute the instraction" $ do
+    it "should execute the instruction" $ do
       let instruction = Instruction Forward 3
       let submarine = Submarine (Position 0) (Depth 0)
       execute instruction submarine `shouldBe` Submarine (Position 3) (Depth 0)
+    it "should execute the down instruction" $ do
+      let instruction = Instruction Down 3
+      let submarine = Submarine (Position 0) (Depth 0)
+      execute instruction submarine `shouldBe` Submarine (Position 0) (Depth 3)
