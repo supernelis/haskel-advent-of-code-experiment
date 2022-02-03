@@ -50,6 +50,7 @@ parseInputFile = do
 
 execute (Instruction Forward value) submarine = forward submarine value
 execute (Instruction Down value) submarine = down submarine value
+execute (Instruction Up value) submarine = up submarine value
 
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
@@ -84,3 +85,7 @@ day2Spec = describe "day2" $ do
       let instruction = Instruction Down 3
       let submarine = Submarine (Position 0) (Depth 0)
       execute instruction submarine `shouldBe` Submarine (Position 0) (Depth 3)
+    it "should execute the up instruction" $ do
+      let instruction = Instruction Up 3
+      let submarine = Submarine (Position 0) (Depth 3)
+      execute instruction submarine `shouldBe` Submarine (Position 0) (Depth 0)
