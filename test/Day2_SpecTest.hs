@@ -26,7 +26,7 @@ day2Spec :: Spec
 day2Spec = describe "day2" $ do
   context "" $ do
     it "should move two times forward" $
-      forward2 (forward2 (Submarine (Position 0) (Depth 0)) 5) 5 `shouldBe` Submarine (Position 10) (Depth 0)
+      forward2 (forward2 (Submarine (Position 5) (Depth 1)) 5) 5 `shouldBe` Submarine (Position 15) (Depth 1)
     it "should move submarine" $
       forward2 (Submarine (Position 0) (Depth 0)) 5 `shouldBe` Submarine (Position 5) (Depth 0)
     it "" $
