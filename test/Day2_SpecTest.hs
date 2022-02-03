@@ -33,6 +33,10 @@ parseInstruction instruction = do
   let (command:value:[]) = words instruction
   Instruction command (read value)
 
+readInputFile = do
+  rawcontent <- readFile "test/input_day2"
+  return (lines rawcontent)
+
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
   describe "forward function" $ do
@@ -49,3 +53,7 @@ day2Spec = describe "day2" $ do
       parseInstruction "forward 3" `shouldBe` Instruction "forward" 3
     it "should parse a down instruction" $
       parseInstruction "down 5" `shouldBe` Instruction "down" 5
+  describe "read file" $ do
+    it "should return the first line" $ do
+      lines <- readInputFile 
+      head lines `shouldBe` "forward 3"
