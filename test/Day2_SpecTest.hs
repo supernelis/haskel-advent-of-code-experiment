@@ -37,3 +37,4 @@ day2Spec = describe "day2" $ do
   describe "up function" $ do
     it "should move two times up" $
       up (up (Submarine (Position 0) (Depth 15)) 5) 5 `shouldBe` Submarine (Position 0) (Depth 5)
+  
