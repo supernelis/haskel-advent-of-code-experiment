@@ -24,6 +24,6 @@ forward2 (Submarine (Position origin) (Depth d)) steps = Submarine (Position (or
 
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
-  context "" $ do
+  describe "forward function" $ do
     it "should move two times forward" $
       forward2 (forward2 (Submarine (Position 5) (Depth 1)) 5) 5 `shouldBe` Submarine (Position 15) (Depth 1)
