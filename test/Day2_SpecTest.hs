@@ -22,8 +22,13 @@ data Submarine = Submarine {position :: Position, depth :: Depth}
 
 forward (Submarine (Position origin) (Depth d)) steps = Submarine (Position (origin + steps)) (Depth d)
 
+down (Submarine (Position origin) (Depth d)) steps = Submarine (Position origin) (Depth (d+steps))
+
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
   describe "forward function" $ do
     it "should move two times forward" $
       forward (forward (Submarine (Position 5) (Depth 1)) 5) 5 `shouldBe` Submarine (Position 15) (Depth 1)
+  describe "down function" $ do
+    it "should move two times down" $
+      down (down (Submarine (Position 0) (Depth 5)) 5) 5 `shouldBe` Submarine (Position 0) (Depth 15)
