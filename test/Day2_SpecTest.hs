@@ -29,7 +29,9 @@ up (Submarine (Position origin) (Depth d)) steps = Submarine (Position origin) (
 data Instruction = Instruction {instruction :: String, value :: Int}
   deriving (Show, Eq)
 
-parseInstruction instruction = Instruction "forward" 3
+parseInstruction instruction = do
+  let (command:value:[]) = words instruction
+  Instruction command (read value)
 
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
@@ -45,3 +47,5 @@ day2Spec = describe "day2" $ do
   describe "parse instruction" $ do
     it "should parse an instruction" $
       parseInstruction "forward 3" `shouldBe` Instruction "forward" 3
+    it "should parse a down instruction" $
+      parseInstruction "down 5" `shouldBe` Instruction "down" 5
