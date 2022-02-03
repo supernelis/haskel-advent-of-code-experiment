@@ -53,7 +53,7 @@ day2Spec = describe "day2" $ do
     it "should move two times up" $
       up (up (Submarine (Position 0) (Depth 15)) 5) 5 `shouldBe` Submarine (Position 0) (Depth 5)
   describe "parse instruction" $ do
-    it "should parse an instruction" $
+    it "should parse a forward instruction" $
       parseInstruction "forward 3" `shouldBe` Instruction "forward" 3
     it "should parse a down instruction" $
       parseInstruction "down 5" `shouldBe` Instruction "down" 5
