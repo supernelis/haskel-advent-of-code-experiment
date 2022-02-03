@@ -20,8 +20,6 @@ data Depth = Depth Int
 data Submarine = Submarine {position :: Position, depth :: Depth}
   deriving (Show, Eq)
 
-forward (Position origin) steps = Position (origin + steps)
-
 forward2 (Submarine (Position origin) (Depth d)) steps = Submarine (Position (origin + steps)) (Depth d)
 
 day2Spec :: Spec
