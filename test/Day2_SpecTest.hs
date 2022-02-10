@@ -56,6 +56,8 @@ executeInstructions instructions = do
   let submarine = Submarine (Position 0) (Depth 0)
   foldl (\acc x-> execute x acc) submarine instructions
 
+multiply (Submarine (Position p) (Depth d)) = p * d
+
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
   describe "forward function" $ do
@@ -102,4 +104,5 @@ day2Spec = describe "day2" $ do
       let lines = ["forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"]
       let instructions = map (parseInstruction) lines
       executeInstructions instructions `shouldBe` Submarine (Position 15) (Depth 10)
-
+    it "should multiply position by depth" $ do
+      multiply (Submarine (Position 15) (Depth 10)) `shouldBe` 150
