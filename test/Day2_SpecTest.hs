@@ -53,7 +53,7 @@ execute (Instruction Down value) submarine = down submarine value
 execute (Instruction Up value) submarine = up submarine value
 
 executeInstructions instructions = do
-  let submarine = Submarine (Position 0) (Depth 0)
+  let submarine = buildSubmarine (Position 0) (Depth 0)
   foldl (\acc x-> execute x acc) submarine instructions
 
 multiply (Submarine (Position p) (Depth d)) = p * d
