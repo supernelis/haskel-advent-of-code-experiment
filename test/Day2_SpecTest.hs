@@ -58,11 +58,13 @@ executeInstructions instructions = do
 
 multiply (Submarine (Position p) (Depth d)) = p * d
 
+buildSubmarine position depth = Submarine (Position position) (Depth depth)
+
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
   describe "forward function" $ do
     it "should move two times forward" $
-      forward (forward (Submarine (Position 5) (Depth 1)) 5) 5 `shouldBe` Submarine (Position 15) (Depth 1)
+      forward (forward (Submarine (Position 5) (Depth 1)) 5) 5 `shouldBe` buildSubmarine 15 1
   describe "down function" $ do
     it "should move two times down" $
       down (down (Submarine (Position 0) (Depth 5)) 5) 5 `shouldBe` Submarine (Position 0) (Depth 15)
