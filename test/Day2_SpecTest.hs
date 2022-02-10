@@ -20,6 +20,10 @@ data Depth = Depth Int
 data Submarine = Submarine {position :: Position, depth :: Depth}
   deriving (Show, Eq)
 
+multiply (Submarine (Position p) (Depth d)) = p * d
+
+buildSubmarine position depth = Submarine position depth
+
 forward (Submarine (Position origin) (Depth d)) steps = Submarine (Position (origin + steps)) (Depth d)
 
 down (Submarine (Position origin) (Depth d)) steps = Submarine (Position origin) (Depth (d+steps))
@@ -55,10 +59,6 @@ execute (Instruction Up value) submarine = up submarine value
 executeInstructions instructions = do
   let submarine = buildSubmarine (Position 0) (Depth 0)
   foldl (\acc x-> execute x acc) submarine instructions
-
-multiply (Submarine (Position p) (Depth d)) = p * d
-
-buildSubmarine position depth = Submarine position depth
 
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
