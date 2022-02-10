@@ -24,11 +24,11 @@ multiply (Submarine (Position p) (Depth d)) = p * d
 
 buildSubmarine position depth = Submarine position depth
 
-forward (Submarine (Position origin) (Depth d)) steps = Submarine (Position (origin + steps)) (Depth d)
+forward (Submarine (Position origin) (Depth d)) steps = buildSubmarine (Position (origin + steps)) (Depth d)
 
-down (Submarine (Position origin) (Depth d)) steps = Submarine (Position origin) (Depth (d+steps))
+down (Submarine (Position origin) (Depth d)) steps = buildSubmarine (Position origin) (Depth (d+steps))
 
-up (Submarine (Position origin) (Depth d)) steps = Submarine (Position origin) (Depth (d-steps))
+up (Submarine (Position origin) (Depth d)) steps = buildSubmarine (Position origin) (Depth (d-steps))
 
 data Command = Forward | Up | Down
   deriving (Show, Eq)
