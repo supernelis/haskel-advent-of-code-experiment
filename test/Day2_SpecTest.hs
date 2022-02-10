@@ -64,13 +64,13 @@ day2Spec :: Spec
 day2Spec = describe "day2" $ do
   describe "forward function" $ do
     it "should move two times forward" $
-      forward (forward (Submarine (Position 5) (Depth 1)) 5) 5 `shouldBe` buildSubmarine (Position 15) (Depth 1)
+      forward (forward (buildSubmarine (Position 5) (Depth 1)) 5) 5 `shouldBe` buildSubmarine (Position 15) (Depth 1)
   describe "down function" $ do
     it "should move two times down" $
-      down (down (Submarine (Position 0) (Depth 5)) 5) 5 `shouldBe` Submarine (Position 0) (Depth 15)
+      down (down (buildSubmarine (Position 0) (Depth 5)) 5) 5 `shouldBe` buildSubmarine (Position 0) (Depth 15)
   describe "up function" $ do
     it "should move two times up" $
-      up (up (Submarine (Position 0) (Depth 15)) 5) 5 `shouldBe` Submarine (Position 0) (Depth 5)
+      up (up (buildSubmarine (Position 0) (Depth 15)) 5) 5 `shouldBe` buildSubmarine (Position 0) (Depth 5)
   describe "parse instruction" $ do
     it "should parse a forward instruction" $
       parseInstruction "forward 3" `shouldBe` Instruction Forward 3
@@ -87,25 +87,25 @@ day2Spec = describe "day2" $ do
   describe "execute instruction" $ do
     it "should execute the instruction" $ do
       let instruction = Instruction Forward 3
-      let submarine = Submarine (Position 0) (Depth 0)
-      execute instruction submarine `shouldBe` Submarine (Position 3) (Depth 0)
+      let submarine = buildSubmarine (Position 0) (Depth 0)
+      execute instruction submarine `shouldBe` buildSubmarine (Position 3) (Depth 0)
     it "should execute the down instruction" $ do
       let instruction = Instruction Down 3
-      let submarine = Submarine (Position 0) (Depth 0)
-      execute instruction submarine `shouldBe` Submarine (Position 0) (Depth 3)
+      let submarine = buildSubmarine (Position 0) (Depth 0)
+      execute instruction submarine `shouldBe` buildSubmarine (Position 0) (Depth 3)
     it "should execute the up instruction" $ do
       let instruction = Instruction Up 3
-      let submarine = Submarine (Position 0) (Depth 3)
-      execute instruction submarine `shouldBe` Submarine (Position 0) (Depth 0)
+      let submarine = buildSubmarine (Position 0) (Depth 3)
+      execute instruction submarine `shouldBe` buildSubmarine (Position 0) (Depth 0)
     it "should execute two instructions" $ do
       let instructions = [Instruction Forward 3,Instruction Down 3]
-      executeInstructions instructions `shouldBe` Submarine (Position 3) (Depth 3)
+      executeInstructions instructions `shouldBe` buildSubmarine (Position 3) (Depth 3)
     it "should executeInstructions" $ do
       let lines = ["forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"]
       let instructions = map (parseInstruction) lines
-      executeInstructions instructions `shouldBe` Submarine (Position 15) (Depth 10)
+      executeInstructions instructions `shouldBe` buildSubmarine (Position 15) (Depth 10)
     it "should multiply position by depth" $ do
-      multiply (Submarine (Position 15) (Depth 10)) `shouldBe` 150
+      multiply (buildSubmarine (Position 15) (Depth 10)) `shouldBe` 150
     it "solves the first part of the puzzle" $ do
       instructions <- parseInputFile
       multiply (executeInstructions instructions) `shouldBe` 2150351
