@@ -106,3 +106,7 @@ day2Spec = describe "day2" $ do
       executeInstructions instructions `shouldBe` Submarine (Position 15) (Depth 10)
     it "should multiply position by depth" $ do
       multiply (Submarine (Position 15) (Depth 10)) `shouldBe` 150
+    it "solves the first part of the puzzle" $ do
+      instructions <- parseInputFile
+      multiply (executeInstructions instructions) `shouldBe` 2150351
+      
