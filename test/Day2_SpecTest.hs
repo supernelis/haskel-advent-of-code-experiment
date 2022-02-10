@@ -52,6 +52,10 @@ execute (Instruction Forward value) submarine = forward submarine value
 execute (Instruction Down value) submarine = down submarine value
 execute (Instruction Up value) submarine = up submarine value
 
+executeInstructions instructions = do
+  let submarine = Submarine (Position 0) (Depth 0)
+  foldl (\acc x-> execute x acc) submarine instructions
+
 day2Spec :: Spec
 day2Spec = describe "day2" $ do
   describe "forward function" $ do
@@ -92,11 +96,10 @@ day2Spec = describe "day2" $ do
     it "should fold" $ do
       foldl (++) "c" ["a","b"] `shouldBe` "cab"
     it "should execute two instructions" $ do
-      let submarine = Submarine (Position 0) (Depth 0)
       let instructions = [Instruction Forward 3,Instruction Down 3]
-      foldl (\acc x-> execute x acc) submarine instructions `shouldBe` Submarine (Position 3) (Depth 3)
+      executeInstructions instructions `shouldBe` Submarine (Position 3) (Depth 3)
     it "should" $ do
       let lines = ["forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"]
       let instructions = map (parseInstruction) lines
-      let submarine = Submarine (Position 0) (Depth 0)
-      foldl (\acc x-> execute x acc) submarine instructions `shouldBe` Submarine (Position 15) (Depth 10)
+      executeInstructions instructions `shouldBe` Submarine (Position 15) (Depth 10)
+
