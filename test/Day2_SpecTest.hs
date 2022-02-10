@@ -95,12 +95,10 @@ day2Spec = describe "day2" $ do
       let instruction = Instruction Up 3
       let submarine = Submarine (Position 0) (Depth 3)
       execute instruction submarine `shouldBe` Submarine (Position 0) (Depth 0)
-    it "should fold" $ do
-      foldl (++) "c" ["a","b"] `shouldBe` "cab"
     it "should execute two instructions" $ do
       let instructions = [Instruction Forward 3,Instruction Down 3]
       executeInstructions instructions `shouldBe` Submarine (Position 3) (Depth 3)
-    it "should" $ do
+    it "should executeInstructions" $ do
       let lines = ["forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"]
       let instructions = map (parseInstruction) lines
       executeInstructions instructions `shouldBe` Submarine (Position 15) (Depth 10)
