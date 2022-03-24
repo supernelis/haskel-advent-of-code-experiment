@@ -23,8 +23,7 @@ data Depth = Depth Int
 data Aim = Aim Int
   deriving (Show, Eq)
 
-data Submarine = Submarine Position Depth Aim
-  deriving (Show, Eq)
+data Something = Submarine Position Depth Aim | ComplexSubmarine Position Depth Aim deriving (Show, Eq)
 
 multiply (Submarine (Position p) (Depth d) aim) = p * d
 
@@ -32,7 +31,9 @@ buildSubmarine position depth = Submarine position depth (Aim 0)
 
 forward (Submarine (Position origin) (Depth d) aim) steps = buildSubmarine (Position (origin + steps)) (Depth d)
 
+down :: Something -> Int -> Something
 down (Submarine (Position origin) (Depth d) aim) steps = buildSubmarine (Position origin) (Depth (d+steps))
+down (ComplexSubmarine (Position origin) (Depth d) (Aim aim)) steps = ComplexSubmarine (Position origin) (Depth d) (Aim (aim+steps))
 
 up (Submarine (Position origin) (Depth d) aim) steps = buildSubmarine (Position origin) (Depth (d-steps))
 
@@ -116,12 +117,9 @@ day2Spec = describe "day2" $ do
       instructions <- parseInputFile
       multiply (executeInstructions instructions) `shouldBe` 2150351
 
-data ComplexSubmarine = ComplexSubmarine Position Depth Aim
-  deriving (Show, Eq)
-
 day2Pt2Spec :: Spec
 day2Pt2Spec = describe "day2 part 2" $ do
   describe "forward function" $ do
     it "should execute the down instruction using aim" $ do
-      ComplexSubmarine (Position 0) (Depth 5) (Aim 5) `shouldBe` ComplexSubmarine (Position 0) (Depth 5) (Aim 5)
+      down (ComplexSubmarine (Position 0) (Depth 5) (Aim 0)) 5 `shouldBe` ComplexSubmarine (Position 0) (Depth 5) (Aim 5)
       
