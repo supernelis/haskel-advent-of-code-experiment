@@ -23,19 +23,19 @@ data Depth = Depth Int
 data Aim = Aim Int
   deriving (Show, Eq)
 
-data Something = Submarine Position Depth Aim | ComplexSubmarine Position Depth Aim deriving (Show, Eq)
+data Something = Submarine Position Depth | ComplexSubmarine Position Depth Aim deriving (Show, Eq)
 
-multiply (Submarine (Position p) (Depth d) aim) = p * d
+multiply (Submarine (Position p) (Depth d)) = p * d
 
-buildSubmarine position depth = Submarine position depth (Aim 0)
+buildSubmarine position depth = Submarine position depth
 
-forward (Submarine (Position origin) (Depth d) aim) steps = buildSubmarine (Position (origin + steps)) (Depth d)
+forward (Submarine (Position origin) (Depth d)) steps = buildSubmarine (Position (origin + steps)) (Depth d)
 
 down :: Something -> Int -> Something
-down (Submarine (Position origin) (Depth d) aim) steps = buildSubmarine (Position origin) (Depth (d+steps))
+down (Submarine (Position origin) (Depth d)) steps = buildSubmarine (Position origin) (Depth (d+steps))
 down (ComplexSubmarine (Position origin) (Depth d) (Aim aim)) steps = ComplexSubmarine (Position origin) (Depth d) (Aim (aim+steps))
 
-up (Submarine (Position origin) (Depth d) aim) steps = buildSubmarine (Position origin) (Depth (d-steps))
+up (Submarine (Position origin) (Depth d)) steps = buildSubmarine (Position origin) (Depth (d-steps))
 
 data Command = Forward | Up | Down
   deriving (Show, Eq)
