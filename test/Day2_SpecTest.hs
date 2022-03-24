@@ -116,9 +116,12 @@ day2Spec = describe "day2" $ do
       instructions <- parseInputFile
       multiply (executeInstructions instructions) `shouldBe` 2150351
 
+data ComplexSubmarine = ComplexSubmarine Position Depth Aim
+  deriving (Show, Eq)
+
 day2Pt2Spec :: Spec
 day2Pt2Spec = describe "day2 part 2" $ do
   describe "forward function" $ do
     it "should execute the down instruction using aim" $ do
-      0 `shouldBe` 0
+      ComplexSubmarine (Position 0) (Depth 5) (Aim 5) `shouldBe` ComplexSubmarine (Position 0) (Depth 5) (Aim 5)
       
