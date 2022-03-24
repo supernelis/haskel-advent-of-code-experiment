@@ -23,7 +23,7 @@ data Depth = Depth Int
 data Aim = Aim Int
   deriving (Show, Eq)
 
-data Submarine = Submarine {position :: Position, depth :: Depth, aim :: Aim}
+data Submarine = Submarine Position Depth Aim
   deriving (Show, Eq)
 
 multiply (Submarine (Position p) (Depth d) aim) = p * d
