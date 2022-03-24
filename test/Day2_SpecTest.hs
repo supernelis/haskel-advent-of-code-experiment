@@ -9,7 +9,10 @@ import Basic
 import System.IO
 
 main :: IO ()
-main = hspec day2Spec
+main = do
+  hspec day2Spec 
+  hspec day2Pt2Spec 
+
 
 data Position = Position Int
   deriving (Show, Eq)
@@ -112,4 +115,10 @@ day2Spec = describe "day2" $ do
     it "solves the first part of the puzzle" $ do
       instructions <- parseInputFile
       multiply (executeInstructions instructions) `shouldBe` 2150351
+
+day2Pt2Spec :: Spec
+day2Pt2Spec = describe "day2 part 2" $ do
+  describe "forward function" $ do
+    it "should execute the down instruction using aim" $ do
+      0 `shouldBe` 0
       
