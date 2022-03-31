@@ -13,9 +13,9 @@ main = do
   hspec day3Spec 
 
 gamma column = do
-    let columnSum = sum column
+    let nbOnes = sum column
     let columnLength = length column
-    if columnSum > (columnLength - columnSum) 
+    if nbOnes > (columnLength - nbOnes) 
         then 1
         else 0
 
