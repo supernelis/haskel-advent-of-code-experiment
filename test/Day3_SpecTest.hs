@@ -19,6 +19,8 @@ gamma_bit column = do
         then 1
         else 0
 
+gamma columns = do
+    map (gamma_bit) columns
 
 day3Spec :: Spec
 day3Spec = describe "day3" $ do
@@ -29,3 +31,7 @@ day3Spec = describe "day3" $ do
     it "returns one when there are more ones" $ do
       let first_column = [1, 0, 1]
       gamma_bit first_column `shouldBe` 1
+  describe "gamma" $ do 
+    it "something" $ do
+      let columns = [ [1, 0, 1], [0, 0, 1]]
+      gamma columns `shouldBe` [1, 0]
