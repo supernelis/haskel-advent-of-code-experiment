@@ -12,7 +12,7 @@ main :: IO ()
 main = do
   hspec day3Spec 
 
-gamma column = do
+gamma_bit column = do
     let nbOnes = sum column
     let nbZeros = (length column) - nbOnes
     if nbOnes > nbZeros 
@@ -25,7 +25,7 @@ day3Spec = describe "day3" $ do
   describe "something" $ do
     it "gamma" $ do
       let first_column = [0, 0, 1]
-      gamma first_column `shouldBe` 0
+      gamma_bit first_column `shouldBe` 0
     it "sums list" $ do
       let first_column = [1, 0, 1]
-      gamma first_column `shouldBe` 1
+      gamma_bit first_column `shouldBe` 1
