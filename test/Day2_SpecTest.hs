@@ -124,3 +124,7 @@ day2Pt2Spec = describe "day2 part 2" $ do
       up (ComplexSubmarine (Position 0) (Depth 5) (Aim 0)) 5 `shouldBe` ComplexSubmarine (Position 0) (Depth 5) (Aim (-5))
     it "should execute the forward instruction using aim" $ do
       forward (ComplexSubmarine (Position 0) (Depth 0) (Aim 2)) 2 `shouldBe` ComplexSubmarine (Position 2) (Depth 4) (Aim 2)
+    it "should executeInstructions" $ do
+      let lines = ["forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"]
+      let instructions = map (parseInstruction) lines
+      executeInstructions (ComplexSubmarine (Position 0) (Depth 0) (Aim 0)) instructions `shouldBe` (ComplexSubmarine (Position 15) (Depth 60) (Aim 10))
