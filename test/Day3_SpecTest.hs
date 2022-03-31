@@ -14,8 +14,7 @@ main = do
 
 gamma column = do
     let nbOnes = sum column
-    let columnLength = length column
-    let nbZeros = columnLength - nbOnes
+    let nbZeros = (length column) - nbOnes
     if nbOnes > nbZeros 
         then 1
         else 0
