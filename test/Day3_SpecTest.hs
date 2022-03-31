@@ -22,10 +22,10 @@ gamma_bit column = do
 
 day3Spec :: Spec
 day3Spec = describe "day3" $ do
-  describe "something" $ do
-    it "gamma" $ do
+  describe "gamma_bit" $ do
+    it "returns zero when there are more zeros" $ do
       let first_column = [0, 0, 1]
       gamma_bit first_column `shouldBe` 0
-    it "sums list" $ do
+    it "returns one when there are more ones" $ do
       let first_column = [1, 0, 1]
       gamma_bit first_column `shouldBe` 1
