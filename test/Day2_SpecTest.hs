@@ -63,7 +63,9 @@ execute (Instruction Down value) submarine = down submarine value
 execute (Instruction Up value) submarine = up submarine value
 
 executeInstructions instructions = do
-  let submarine = Submarine (Position 0) (Depth 0)
+  executeInstructions2 (Submarine (Position 0) (Depth 0)) instructions
+
+executeInstructions2 submarine instructions = do
   foldl (\acc x-> execute x acc) submarine instructions
 
 day2Spec :: Spec
