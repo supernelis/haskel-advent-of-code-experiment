@@ -28,6 +28,7 @@ data Sub = Submarine Position Depth | ComplexSubmarine Position Depth Aim derivi
 multiply (Submarine (Position p) (Depth d)) = p * d
 
 forward (Submarine (Position origin) (Depth d)) steps = Submarine (Position (origin + steps)) (Depth d)
+forward (ComplexSubmarine (Position origin) (Depth d) (Aim aim)) steps = ComplexSubmarine (Position (origin+steps)) (Depth (d+(aim * steps))) (Aim aim)
 
 down (Submarine (Position origin) (Depth d)) steps = Submarine (Position origin) (Depth (d+steps))
 down (ComplexSubmarine (Position origin) (Depth d) (Aim aim)) steps = ComplexSubmarine (Position origin) (Depth d) (Aim (aim+steps))
@@ -122,4 +123,5 @@ day2Pt2Spec = describe "day2 part 2" $ do
       down (ComplexSubmarine (Position 0) (Depth 5) (Aim 0)) 5 `shouldBe` ComplexSubmarine (Position 0) (Depth 5) (Aim 5)
     it "should execute the up instruction using aim" $ do
       up (ComplexSubmarine (Position 0) (Depth 5) (Aim 0)) 5 `shouldBe` ComplexSubmarine (Position 0) (Depth 5) (Aim (-5))
-      
+    it "should execute the forward instruction using aim" $ do
+      forward (ComplexSubmarine (Position 0) (Depth 0) (Aim 2)) 2 `shouldBe` ComplexSubmarine (Position 2) (Depth 4) (Aim 2)
