@@ -62,7 +62,7 @@ execute (Instruction Forward value) submarine = forward submarine value
 execute (Instruction Down value) submarine = down submarine value
 execute (Instruction Up value) submarine = up submarine value
 
-executeInstructions2 submarine instructions = do
+executeInstructions submarine instructions = do
   foldl (\acc x-> execute x acc) submarine instructions
 
 day2Spec :: Spec
@@ -104,16 +104,16 @@ day2Spec = describe "day2" $ do
       execute instruction submarine `shouldBe` Submarine (Position 0) (Depth 0)
     it "should execute two instructions" $ do
       let instructions = [Instruction Forward 3,Instruction Down 3]
-      executeInstructions2 (Submarine (Position 0) (Depth 0)) instructions `shouldBe` Submarine (Position 3) (Depth 3)
+      executeInstructions (Submarine (Position 0) (Depth 0)) instructions `shouldBe` Submarine (Position 3) (Depth 3)
     it "should executeInstructions" $ do
       let lines = ["forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"]
       let instructions = map (parseInstruction) lines
-      executeInstructions2 (Submarine (Position 0) (Depth 0)) instructions `shouldBe` Submarine (Position 15) (Depth 10)
+      executeInstructions (Submarine (Position 0) (Depth 0)) instructions `shouldBe` Submarine (Position 15) (Depth 10)
     it "should multiply position by depth" $ do
       multiply (Submarine (Position 15) (Depth 10)) `shouldBe` 150
     it "solves the first part of the puzzle" $ do
       instructions <- parseInputFile
-      multiply (executeInstructions2 (Submarine (Position 0) (Depth 0)) instructions) `shouldBe` 2150351
+      multiply (executeInstructions (Submarine (Position 0) (Depth 0)) instructions) `shouldBe` 2150351
 
 day2Pt2Spec :: Spec
 day2Pt2Spec = describe "day2 part 2" $ do
