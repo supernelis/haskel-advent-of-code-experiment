@@ -26,6 +26,7 @@ data Aim = Aim Int
 data Sub = Submarine Position Depth | ComplexSubmarine Position Depth Aim deriving (Show, Eq)
 
 multiply (Submarine (Position p) (Depth d)) = p * d
+multiply (ComplexSubmarine (Position p) (Depth d) (Aim aim)) = p * d
 
 forward (Submarine (Position origin) (Depth d)) steps = Submarine (Position (origin + steps)) (Depth d)
 forward (ComplexSubmarine (Position origin) (Depth d) (Aim aim)) steps = ComplexSubmarine (Position (origin+steps)) (Depth (d+(aim * steps))) (Aim aim)
@@ -128,3 +129,6 @@ day2Pt2Spec = describe "day2 part 2" $ do
       let lines = ["forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"]
       let instructions = map (parseInstruction) lines
       executeInstructions (ComplexSubmarine (Position 0) (Depth 0) (Aim 0)) instructions `shouldBe` (ComplexSubmarine (Position 15) (Depth 60) (Aim 10))
+    it "solves the first part of the puzzle" $ do
+      instructions <- parseInputFile
+      multiply (executeInstructions (ComplexSubmarine (Position 0) (Depth 0) (Aim 0)) instructions) `shouldBe` 1842742223
