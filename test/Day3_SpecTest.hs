@@ -19,7 +19,7 @@ gamma_bit column = do
         then 1
         else 0
 
-gamma columns = do
+gamma_bits columns = do
     map (gamma_bit) columns
 
 day3Spec :: Spec
@@ -32,6 +32,6 @@ day3Spec = describe "day3" $ do
       let first_column = [1, 0, 1]
       gamma_bit first_column `shouldBe` 1
   describe "gamma" $ do 
-    it "something" $ do
+    it "calculates the gamma bits" $ do
       let columns = [ [1, 0, 1], [0, 0, 1]]
-      gamma columns `shouldBe` [1, 0]
+      gamma_bits columns `shouldBe` [1, 0]
