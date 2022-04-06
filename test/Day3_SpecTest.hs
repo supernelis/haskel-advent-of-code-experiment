@@ -31,7 +31,7 @@ day3Spec = describe "day3" $ do
     it "returns one when there are more ones" $ do
       let first_column = [1, 0, 1]
       gamma_bit first_column `shouldBe` 1
-  describe "gamma" $ do 
+  describe "gamma for columns" $ do 
     it "calculates the gamma bits" $ do
       let columns = [ [1, 0, 1], [0, 0, 1]]
       gamma_bits columns `shouldBe` [1, 0]
