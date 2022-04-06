@@ -7,6 +7,7 @@ import Test.Hspec
 
 import Basic
 import System.IO
+import Data.Char
 
 main :: IO ()
 main = do
@@ -22,6 +23,9 @@ gamma_bit column = do
 gamma_bits columns = do
     map (gamma_bit) columns
 
+rows_to_columns rows = do
+    map digitToInt "00100"
+ 
 day3Spec :: Spec
 day3Spec = describe "day3" $ do
   describe "gamma_bit" $ do
@@ -35,3 +39,7 @@ day3Spec = describe "day3" $ do
     it "calculates the gamma bits" $ do
       let columns = [ [1, 0, 1], [0, 0, 1]]
       gamma_bits columns `shouldBe` [1, 0]
+  describe  "transform rows to columns" $ do
+    it "something" $ do
+        let rows = ["00100"]
+        rows_to_columns rows `shouldBe` [0,0,1,0,0]
