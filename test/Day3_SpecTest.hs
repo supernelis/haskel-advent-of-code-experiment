@@ -25,8 +25,8 @@ gamma_bits columns = do
     map (gamma_bit) columns
 
 rows_to_columns rows = do
-    let first_column = map digitToInt "00100"
-    transpose [first_column]
+    let columns = map (map digitToInt) rows
+    transpose columns
  
 day3Spec :: Spec
 day3Spec = describe "day3" $ do
