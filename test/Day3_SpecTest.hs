@@ -45,3 +45,7 @@ day3Spec = describe "day3" $ do
     it "transforms rows to columns" $ do
         let rows = ["00100", "11110"]
         rows_to_columns rows `shouldBe` [[0, 1],[0, 1],[1, 1],[0, 1],[0, 0]]
+  describe  "gamma" $ do
+    it "calculates gamma" $ do
+        let rows = ["00100","11110","10110","10111","10101","01111","00111","11100","10000","11001","00010","01010"]
+        gamma_bits (rows_to_columns rows) `shouldBe` [1,0,1,1,0]
