@@ -27,7 +27,14 @@ gamma_bits columns = do
 rows_to_columns rows = do
     let columns = map (map digitToInt) rows
     transpose columns
- 
+
+convert :: [Int] -> Int
+convert [] = 0
+convert (x : xs) = x + 2 * convert xs
+
+reverseList [] = []
+reverseList (x : xs) = (reverse xs) ++ [x] 
+
 day3Spec :: Spec
 day3Spec = describe "day3" $ do
   describe "gamma_bit" $ do
@@ -49,3 +56,6 @@ day3Spec = describe "day3" $ do
     it "calculates gamma" $ do
         let rows = ["00100","11110","10110","10111","10101","01111","00111","11100","10000","11001","00010","01010"]
         gamma_bits (rows_to_columns rows) `shouldBe` [1,0,1,1,0]
+    it "return gamma as decimal" $ do
+       let rows = ["00100","11110","10110","10111","10101","01111","00111","11100","10000","11001","00010","01010"]
+       convert (reverseList (gamma_bits (rows_to_columns rows))) `shouldBe` 22
