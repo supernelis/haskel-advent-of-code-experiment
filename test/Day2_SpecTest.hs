@@ -7,6 +7,7 @@ import Test.Hspec
 
 import Basic
 import System.IO
+import Reader
 
 main :: IO ()
 main = do
@@ -51,9 +52,7 @@ parseInstruction instruction = do
   let (command:value:[]) = words instruction
   Instruction (parseCommand command) (read value)
 
-readInputFile = do
-  rawcontent <- readFile "test/input_day2"
-  return (lines rawcontent)
+readInputFile = readPuzzle "test/input_day2"
 
 parseInputFile = do
   raw_lines <- readInputFile
