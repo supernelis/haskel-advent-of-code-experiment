@@ -23,6 +23,8 @@ gamma_bit column = do
 
 gamma_bits_columns columns = do
     map (gamma_bit) columns
+    
+gamma_bits rows = gamma_bits_columns (rows_to_columns rows)
 
 rows_to_columns rows = do
     let columns = map (map digitToInt) rows
@@ -61,4 +63,4 @@ day3Spec = describe "day3" $ do
         gamma_bits_columns (rows_to_columns rows) `shouldBe` [1,0,1,1,0]
     it "return gamma as decimal" $ do
        let rows = ["00100","11110","10110","10111","10101","01111","00111","11100","10000","11001","00010","01010"]
-       bitsToInteger (gamma_bits_columns (rows_to_columns rows)) `shouldBe` 22
+       bitsToInteger (gamma_bits rows) `shouldBe` 22
