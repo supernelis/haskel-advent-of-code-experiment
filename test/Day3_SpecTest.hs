@@ -26,6 +26,8 @@ gamma_bits_columns columns = do
     
 gamma_bits rows = gamma_bits_columns (rows_to_columns rows)
 
+gamma_rate rows = bitsToInteger (gamma_bits rows)
+
 epsilon_bits rows = bit_flip (gamma_bits rows)
 
 bit_flip bits = map (\x -> abs (x-1)) bits
@@ -67,7 +69,7 @@ day3Spec = describe "day3" $ do
         gamma_bits_columns (rows_to_columns rows) `shouldBe` [1,0,1,1,0]
     it "return gamma as decimal" $ do
        let rows = ["00100","11110","10110","10111","10101","01111","00111","11100","10000","11001","00010","01010"]
-       bitsToInteger (gamma_bits rows) `shouldBe` 22
+       gamma_rate rows `shouldBe` 22
   describe "epsilon" $ do
     it "calculatess epsilon" $ do
       let rows = ["00100","11110","10110","10111","10101","01111","00111","11100","10000","11001","00010","01010"]
