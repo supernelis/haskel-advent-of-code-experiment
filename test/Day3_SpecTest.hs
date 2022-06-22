@@ -35,6 +35,9 @@ convert (x : xs) = x + 2 * convert xs
 reverseList [] = []
 reverseList (x : xs) = (reverse xs) ++ [x] 
 
+bitsToInteger :: [Int] -> Int
+bitsToInteger bits = convert (reverseList bits)
+
 day3Spec :: Spec
 day3Spec = describe "day3" $ do
   describe "gamma_bit" $ do
@@ -58,4 +61,4 @@ day3Spec = describe "day3" $ do
         gamma_bits (rows_to_columns rows) `shouldBe` [1,0,1,1,0]
     it "return gamma as decimal" $ do
        let rows = ["00100","11110","10110","10111","10101","01111","00111","11100","10000","11001","00010","01010"]
-       convert (reverseList (gamma_bits (rows_to_columns rows))) `shouldBe` 22
+       bitsToInteger (gamma_bits (rows_to_columns rows)) `shouldBe` 22
